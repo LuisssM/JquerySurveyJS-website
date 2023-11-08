@@ -1,0 +1,25 @@
+const surveyJson = {
+    elements: [{
+        name: "FirstName",
+        title: "Enter your first name:",
+        type: "text"
+    }, {
+        name: "LastName",
+        title: "Enter your last name:",
+        type: "text"
+    }]
+};
+
+const survey = new Survey.Model(surveyJson);
+survey.focusFirstQuestionAutomatic = false;
+
+function alertResults (sender) {
+    const results = JSON.stringify(sender.data);
+    alert(results);
+}
+
+survey.onComplete.add(alertResults);
+
+$(function() {
+    $("#surveyCont").Survey({ model: survey });
+});
